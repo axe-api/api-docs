@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Validation from "../Validation";
+import Validations from "../Validations";
 
 const Container = styled.div``;
 
@@ -48,9 +48,8 @@ function FieldDoc() {
         <FieldType>varchar(10)</FieldType>
         <Required>required</Required>
       </FieldDiv>
-      {[1, 2, 3, 4, 5].map((item) => (
-        <Validation key={item} />
-      ))}
+
+      <Validations />
     </Container>
   );
 }
