@@ -3,7 +3,8 @@ import RequestBody from "../RequestBody";
 import { IRoute } from "../../Interfaces";
 import { HANDLER_TITLE_MAP } from "../../Constants";
 
-const Title = styled.div`
+const Title = styled.a`
+  display: block;
   font-family: "Plus Jakarta Sans";
   font-style: normal;
   font-weight: 700;
@@ -12,16 +13,30 @@ const Title = styled.div`
   padding-bottom: 24px;
   margin-bottom: 24px;
   border-bottom: 1px solid #282828;
+  color: white;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 interface IResourceContentProps {
   route: IRoute;
 }
 
+export const toURLLink = (route: IRoute) => {
+  return `${route.model}-${HANDLER_TITLE_MAP[route.handler]}`.toLowerCase();
+};
+
 function ResourceContent({ route }: IResourceContentProps) {
   return (
     <div>
-      <Title>
+      <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
         {route.model} / {HANDLER_TITLE_MAP[route.handler]}
       </Title>
       {["POST", "PUT", "PATCH", "DELETE"].includes(route.method) && (

@@ -18,7 +18,7 @@ interface IValidationProps {
 }
 
 function Validation({ name, column }: IValidationProps) {
-  const [key, param1, param2] = name.split(":");
+  const [key, param1] = name.split(":");
 
   let description = VALIDATION_DESCRIPTIONS[key];
 

@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import HTTPMethod from "../HTTPMethod";
+import { IRoute } from "../../Interfaces";
+import { COLOR_MAP, HANDLER_TITLE_MAP } from "../../Constants";
+import { toURLLink } from "../ResourceContent";
 
-interface IHandlerMenuProps {
-  title: string;
-  color: string;
-  bgColor: string;
-  method: string;
-}
-
-const Link = styled.a`
+const Link = styled.button`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,18 +20,44 @@ const Link = styled.a`
   color: ${({ theme }) => theme.white};
   cursor: pointer;
   transition: all 100ms;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
 
   &:hover {
     background-color: #393939;
   }
 `;
 
-function HandlerMenu({ title, method, bgColor, color }: IHandlerMenuProps) {
+interface IHandlerMenuProps {
+  route: IRoute;
+}
+
+function HandlerMenu({ route }: IHandlerMenuProps) {
+  const link = toURLLink(route);
+
+  const handleClick = () => {
+    console.log("handleClick", link);
+    const element = document.getElementById(link);
+    const bodyRect = document.body.getBoundingClientRect();
+    if (element) {
+      const { top } = element.getBoundingClientRect();
+      window.scrollTo({
+        top: top - bodyRect.top,
+        behavior: "smooth",
+      });
+    }
+    console.log(element);
+  };
+
   return (
-    <Link>
-      {title}
-      <HTTPMethod color={color} backgroundColor={bgColor}>
-        {method}
+    <Link type="button" onClick={handleClick}>
+      {HANDLER_TITLE_MAP[route.handler]}
+      <HTTPMethod
+        color={COLOR_MAP[route.method].color}
+        backgroundColor={COLOR_MAP[route.method].bgColor}
+      >
+        {route.method}
       </HTTPMethod>
     </Link>
   );

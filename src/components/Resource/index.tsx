@@ -5,7 +5,6 @@ import { ArrowUp, ArrowDown } from "../Icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IDoc } from "../../Interfaces";
 import { DocContext } from "../../contexts/DocContext";
-import { COLOR_MAP, HANDLER_TITLE_MAP } from "../../Constants";
 
 const Container = styled.div`
   padding-left: 24px;
@@ -65,13 +64,7 @@ function Resource({ model }: IResourceProps) {
       {isOpen && (
         <Handlers>
           {routes.map((item) => (
-            <HandlerMenu
-              key={`${item.method}.${item.url}`}
-              title={HANDLER_TITLE_MAP[item.handler]}
-              method={item.method}
-              color={COLOR_MAP[item.method].color}
-              bgColor={COLOR_MAP[item.method].bgColor}
-            />
+            <HandlerMenu key={`${item.method}.${item.url}`} route={item} />
           ))}
         </Handlers>
       )}
