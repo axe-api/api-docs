@@ -4,6 +4,7 @@ import ResourceContent from "../ResourceContent";
 import { useContext } from "react";
 import { IDoc } from "../../Interfaces";
 import { DocContext } from "../../contexts/DocContext";
+import GeneralInformation from "../GeneralInformation";
 
 const Container = styled.div`
   padding: 20px;
@@ -20,6 +21,7 @@ function Content() {
 
   return (
     <Container>
+      <GeneralInformation />
       {data.routes.map((route, index) => (
         <ResourceContent key={index} route={route} />
       ))}
