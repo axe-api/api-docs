@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FieldDoc from "../FieldDoc";
+import { IRoute } from "../../Interfaces";
 
 const Title = styled.div`
   font-family: "Plus Jakarta Sans";
@@ -10,12 +11,16 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
-function RequestBody() {
+interface IRequestBodyProps {
+  route: IRoute;
+}
+
+function RequestBody({ route }: IRequestBodyProps) {
   return (
     <div>
       <Title>Request Body</Title>
-      {[1, 2, 3, 4, 6].map((item) => (
-        <FieldDoc key={item} />
+      {route.fillables.map((fillable) => (
+        <FieldDoc key={fillable} field={fillable} route={route} />
       ))}
     </div>
   );

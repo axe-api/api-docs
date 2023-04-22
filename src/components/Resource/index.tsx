@@ -5,6 +5,7 @@ import { ArrowUp, ArrowDown } from "../Icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IDoc } from "../../Interfaces";
 import { DocContext } from "../../contexts/DocContext";
+import { COLOR_MAP, HANDLER_TITLE_MAP } from "../../Constants";
 
 const Container = styled.div`
   padding-left: 24px;
@@ -40,30 +41,6 @@ const Handlers = styled.div`
 interface IResourceProps {
   model: string;
 }
-
-interface IColorPair {
-  color: string;
-  bgColor: string;
-}
-
-const COLOR_MAP: Record<string, IColorPair> = {
-  POST: { color: "#35370A", bgColor: "#E4EB45" },
-  GET: { color: "#1D2B25", bgColor: "#00F4B9" },
-  DELETE: { color: "#530C02", bgColor: "#FD847E" },
-  PUT: { color: "#35370A", bgColor: "#E4EB45" },
-  PATCH: { color: "#35370A", bgColor: "#E4EB45" },
-};
-
-const HANDLER_TITLE_MAP: Record<string, string> = {
-  store: "Create",
-  paginate: "Paginate",
-  show: "Show",
-  update: "Update",
-  destroy: "Delete",
-  force_delete: "Force delete",
-  patch: "Patch",
-  all: "All",
-};
 
 function Resource({ model }: IResourceProps) {
   const data = useContext<IDoc>(DocContext);

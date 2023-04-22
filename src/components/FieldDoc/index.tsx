@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Validations from "../Validations";
+import { IRoute } from "../../Interfaces";
 
 const Container = styled.div``;
 
@@ -40,16 +41,35 @@ const Required = styled.div`
   color: #fd847e;
 `;
 
-function FieldDoc() {
+interface IFieldDocProps {
+  field: string;
+  route: IRoute;
+}
+
+function FieldDoc({ field, route }: IFieldDocProps) {
+  const column = route.columns.find((item) => item.name === field);
+  const validations = (
+    route.validations ? route.validations[field] || "" : ""
+  ).split("|");
+
+  const isRequired = validations.includes("required");
+  const otherValidations = validations.filter((item) => item !== "required");
+
+  if (!column) {
+    throw new Error(`Undefined column: ${field}`);
+  }
+
   return (
     <Container>
       <FieldDiv>
-        <FieldName>name</FieldName>
-        <FieldType>varchar(10)</FieldType>
-        <Required>required</Required>
+        <FieldName>{field}</FieldName>
+        <FieldType>{column?.data_type}</FieldType>
+        {isRequired && <Required>required</Required>}
       </FieldDiv>
 
-      <Validations />
+      {otherValidations.length > 0 && (
+        <Validations validations={otherValidations} column={column} />
+      )}
     </Container>
   );
 }

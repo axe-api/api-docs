@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { NAVBAR_HEIGHT, LEFTBAR_WIDTH, RIGHTBAR_WIDTH } from "../Sizes";
 import ResourceContent from "../ResourceContent";
+import { useContext } from "react";
+import { IDoc } from "../../Interfaces";
+import { DocContext } from "../../contexts/DocContext";
 
 const Container = styled.div`
   padding: 20px;
@@ -11,10 +14,14 @@ const Container = styled.div`
 `;
 
 function Content() {
+  const data = useContext<IDoc>(DocContext);
+
+  console.log(data.routes);
+
   return (
     <Container>
-      {[1, 2, 3, 4, 5, 6].map((item) => (
-        <ResourceContent key={item} title="Users / Paginate" />
+      {data.routes.map((route, index) => (
+        <ResourceContent key={index} route={route} />
       ))}
     </Container>
   );

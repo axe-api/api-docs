@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Validation from "../Validation";
+import { IColumn } from "../../Interfaces";
 
 const Container = styled.div`
   border-bottom: 1px solid #2b2b2b;
@@ -34,7 +35,12 @@ const Rules = styled.div`
   color: #ffffff;
 `;
 
-const Validations = () => {
+interface IValidationsProps {
+  validations: string[];
+  column: IColumn;
+}
+
+const Validations = ({ validations, column }: IValidationsProps) => {
   return (
     <Container>
       <Title>
@@ -42,8 +48,8 @@ const Validations = () => {
         <div>Description</div>
       </Title>
       <Rules>
-        {[1, 2, 3, 4, 5].map((item) => (
-          <Validation key={item} />
+        {validations.map((item) => (
+          <Validation key={item} name={item} column={column} />
         ))}
       </Rules>
     </Container>
