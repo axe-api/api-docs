@@ -5,6 +5,7 @@ import { ArrowUp, ArrowDown } from "../Icons";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IDoc } from "../../Interfaces";
 import { DocContext } from "../../contexts/DocContext";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   padding-left: 24px;
@@ -45,8 +46,11 @@ function Resource({ model }: IResourceProps) {
   const data = useContext<IDoc>(DocContext);
   const [isOpen, setOpen] = useState(true);
   const parent = useRef(null);
+  const search = useSelector((state: any) => state.search.value.toLowerCase());
 
-  const routes = data.routes.filter((item) => item.model === model);
+  const routes = data.routes.filter(
+    (item) => item.model === model && item.searchKey.includes(search)
+  );
 
   useEffect(() => {
     parent.current && autoAnimate(parent.current);

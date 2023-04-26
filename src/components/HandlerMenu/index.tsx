@@ -37,7 +37,6 @@ function HandlerMenu({ route }: IHandlerMenuProps) {
   const link = toURLLink(route);
 
   const handleClick = () => {
-    console.log("handleClick", link);
     const element = document.getElementById(link);
     const bodyRect = document.body.getBoundingClientRect();
     if (element) {
@@ -47,7 +46,6 @@ function HandlerMenu({ route }: IHandlerMenuProps) {
         behavior: "smooth",
       });
     }
-    console.log(element);
   };
 
   return (

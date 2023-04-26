@@ -1,20 +1,41 @@
+import { Provider } from "react-redux";
 import Header from "./components/Header";
 import LeftBar from "./components/LeftBar";
 import RightBar from "./components/RightBar";
 import Content from "./components/Content";
 import { useEffect, useState } from "react";
 import { DocContext } from "./contexts/DocContext";
+import { IDoc, IRoute } from "./Interfaces";
+import store from "./store";
+import { HANDLER_TITLE_MAP } from "./Constants";
 
 function App() {
-  const [docs, setDocs] = useState(null);
+  const [docs, setDocs] = useState<IDoc>({
+    routes: [],
+  });
 
   const fetchDocs = async () => {
     const response = await fetch("http://localhost:3000/docs");
-    setDocs(await response.json());
+    const result = await response.json();
+    setDocs({
+      ...docs,
+      ...{
+        routes: result.routes.map((route: IRoute) => {
+          return {
+            ...route,
+            searchKey: `${route.model}-${HANDLER_TITLE_MAP[route.handler]}-${
+              route.method
+            }`.toLowerCase(),
+          };
+        }),
+        versions: result.versions,
+      },
+    });
   };
 
   useEffect(() => {
     fetchDocs();
+    // eslint-disable-next-line
   }, []);
 
   if (!docs) {
@@ -22,12 +43,14 @@ function App() {
   }
 
   return (
-    <DocContext.Provider value={docs}>
-      <Header />
-      <LeftBar />
-      <Content />
-      <RightBar />
-    </DocContext.Provider>
+    <Provider store={store}>
+      <DocContext.Provider value={docs}>
+        <Header />
+        <LeftBar />
+        <Content />
+        <RightBar />
+      </DocContext.Provider>
+    </Provider>
   );
 }
 

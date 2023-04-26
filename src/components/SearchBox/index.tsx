@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { SearchIcon } from "../Icons";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch } from "../../store/searchSlice";
 
 const Container = styled.div`
   padding: 24px;
@@ -34,12 +36,20 @@ const IconBox = styled.div`
 `;
 
 function SearchBox() {
+  const search = useSelector((state: any) => state.search.value);
+  const dispatch = useDispatch();
+
   return (
     <Container>
       <IconBox>
         <SearchIcon width={16} height={16} />
       </IconBox>
-      <Input type="text" placeholder="Find anything..." />
+      <Input
+        type="text"
+        placeholder="Find anything..."
+        value={search}
+        onChange={(event) => dispatch(setSearch(event.target.value))}
+      />
     </Container>
   );
 }

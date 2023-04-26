@@ -17,8 +17,6 @@ const Container = styled.div`
 function Content() {
   const data = useContext<IDoc>(DocContext);
 
-  console.log(data.routes);
-
   return (
     <Container>
       <GeneralInformation />

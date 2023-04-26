@@ -33,7 +33,7 @@ function URLBar() {
       <HTTPMethod color="#1D2B25" backgroundColor="#00F4B9">
         GET
       </HTTPMethod>
-      <URL>http://localhost:3000/api/users/:userId/posts/:id</URL>
+      <URL>http://localhost:4000/api/users/:userId/posts/:id</URL>
       <CopyButton type="button">
         <CopyIcon width={24} height={24} />
       </CopyButton>

@@ -11,6 +11,7 @@ export interface IRoute {
   fillables: string[];
   columns: IColumn[];
   validations: Record<string, string>;
+  searchKey: string;
 }
 
 export interface IDoc {
