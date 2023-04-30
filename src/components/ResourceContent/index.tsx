@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import RequestBody from "../RequestBody";
-import { IRoute } from "../../Interfaces";
+import { IRoute, IVersion } from "../../Interfaces";
 import { HANDLER_TITLE_MAP } from "../../Constants";
 import URLBar from "../URLBar";
 import QueryString from "../GetDocs/QueryString";
@@ -30,13 +30,14 @@ const Title = styled.a`
 
 interface IResourceContentProps {
   route: IRoute;
+  version: IVersion;
 }
 
 export const toURLLink = (route: IRoute) => {
   return `${route.model}-${HANDLER_TITLE_MAP[route.handler]}`.toLowerCase();
 };
 
-function ResourceContent({ route }: IResourceContentProps) {
+function ResourceContent({ route, version }: IResourceContentProps) {
   return (
     <div>
       <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
@@ -47,7 +48,7 @@ function ResourceContent({ route }: IResourceContentProps) {
       {["paginate", "show"].includes(route.handler) && (
         <>
           <Params />
-          <QueryString />
+          <QueryString route={route} version={version} />
         </>
       )}
 

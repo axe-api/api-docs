@@ -11,11 +11,13 @@ import { HANDLER_TITLE_MAP } from "./Constants";
 function App() {
   const [docs, setDocs] = useState<IDoc>({
     routes: [],
+    versions: [],
   });
 
   const fetchDocs = async () => {
     const response = await fetch("http://localhost:3000/api_docs");
     const result = await response.json();
+    console.log(result);
     setDocs({
       ...docs,
       ...{

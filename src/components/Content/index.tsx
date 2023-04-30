@@ -21,13 +21,18 @@ const FixedSizeBox = styled.div`
 
 function Content() {
   const data = useContext<IDoc>(DocContext);
+  const version = data.versions.at(0);
+
+  if (!version) {
+    return <></>;
+  }
 
   return (
     <Container>
       <FixedSizeBox>
         <GeneralInformation />
         {data.routes.map((route, index) => (
-          <ResourceContent key={index} route={route} />
+          <ResourceContent key={index} route={route} version={version} />
         ))}
       </FixedSizeBox>
     </Container>

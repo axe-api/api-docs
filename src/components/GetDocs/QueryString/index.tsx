@@ -1,25 +1,14 @@
 import styled from "styled-components";
 import { Ul, Li } from "../shared";
+import { IRoute, IVersion } from "../../../Interfaces";
+import QueryFields from "./QueryFields";
+import Sort from "./Sort";
+import Page from "./Page";
+import PerPage from "./PerPage";
 
 const Container = styled.div`
   margin-bottom: 30px;
 `;
-
-const QueryFields = () => {
-  return <Li>fields: name, surname, etc</Li>;
-};
-
-const Sort = () => {
-  return <Li>sort: All fields</Li>;
-};
-
-const Page = () => {
-  return <Li>page: Current page</Li>;
-};
-
-const PerPage = () => {
-  return <Li>per_page: Per page (1-100)</Li>;
-};
 
 const With = () => {
   return <Li>with: Related data (Maybe relation map)</Li>;
@@ -33,15 +22,20 @@ const Conditions = () => {
   return <Li>q: Conditions</Li>;
 };
 
-export default function QueryString() {
+interface IQueryStringProps {
+  route: IRoute;
+  version: IVersion;
+}
+
+export default function QueryString({ route, version }: IQueryStringProps) {
   return (
     <Container>
       <h3>Query string</h3>
       <Ul>
-        <QueryFields />
-        <Sort />
-        <Page />
-        <PerPage />
+        <QueryFields route={route} />
+        <Sort route={route} />
+        <Page route={route} />
+        <PerPage route={route} version={version} />
         <With />
         <Trashed />
         <Conditions />
