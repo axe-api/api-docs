@@ -1,4 +1,4 @@
-import { QueryFeature, QueryFeatureType } from "./Enums";
+import { QueryFeature, QueryFeatureType, Relationships } from "./Enums";
 
 export interface IColumn {
   name: string;
@@ -11,6 +11,14 @@ export interface IQueryLimitConfig {
   key: string | null;
 }
 
+export interface IRelation {
+  type: Relationships;
+  name: string;
+  model: string;
+  primaryKey: string;
+  foreignKey: string;
+}
+
 export interface IRoute {
   model: string;
   handler: string;
@@ -19,6 +27,7 @@ export interface IRoute {
   fillables: string[];
   columns: IColumn[];
   hiddens: string[];
+  relations: IRelation[];
   validations: Record<string, string>;
   searchKey: string;
   queryLimits: IQueryLimitConfig[];

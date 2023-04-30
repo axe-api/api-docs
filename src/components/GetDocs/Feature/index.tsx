@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 const TitleSection = styled.div`

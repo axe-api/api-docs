@@ -28,3 +28,8 @@ export enum QueryFeatureType {
   Allow = "Allow",
   Deny = "Deny",
 }
+
+export enum Relationships {
+  HAS_ONE = "HAS_ONE",
+  HAS_MANY = "HAS_MANY",
+}
