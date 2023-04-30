@@ -7,13 +7,17 @@ import { COLOR_MAP } from "../../Constants";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.secondary};
-  padding: 10px 8px;
+  padding: 10px 16px;
   display: flex;
   gap: 8px;
   justify-content: space-between;
   align-items: center;
   border-radius: 6px;
   margin-bottom: 20px;
+
+  &.bg-1 {
+    background-color: ${({ theme }) => theme.primary};
+  }
 `;
 
 const URL = styled.div`
@@ -34,11 +38,12 @@ const CopyButton = styled.button`
 
 interface IURLBarProps {
   route: IRoute;
+  zebra: number;
 }
 
-function URLBar({ route }: IURLBarProps) {
+function URLBar({ route, zebra }: IURLBarProps) {
   return (
-    <Container>
+    <Container className={`bg-${zebra}`}>
       <HTTPMethod
         color={COLOR_MAP[route.method].color}
         backgroundColor={COLOR_MAP[route.method].bgColor}
