@@ -3,7 +3,7 @@ import RequestBody from "../RequestBody";
 import { IRoute, IVersion } from "../../Interfaces";
 import { HANDLER_TITLE_MAP } from "../../Constants";
 import URLBar from "../URLBar";
-import QueryString from "../GetDocs/QueryString";
+import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
 
 const Title = styled.a`
@@ -45,10 +45,32 @@ function ResourceContent({ route, version }: IResourceContentProps) {
       </Title>
       <URLBar />
 
-      {["paginate", "show"].includes(route.handler) && (
+      {route.handler === "paginate" && (
         <>
           <Params />
-          <QueryString route={route} version={version} />
+          <QueryString
+            route={route}
+            version={version}
+            options={DEFAULT_OPTIONS}
+          />
+        </>
+      )}
+
+      {route.handler === "show" && (
+        <>
+          <Params />
+          <QueryString
+            route={route}
+            version={version}
+            options={{
+              fields: true,
+              sort: false,
+              page: false,
+              perPage: false,
+              with: true,
+              conditions: true,
+            }}
+          />
         </>
       )}
 

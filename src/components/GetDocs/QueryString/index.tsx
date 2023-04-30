@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Ul, Li } from "../shared";
+import { Ul } from "../shared";
 import { IRoute, IVersion } from "../../../Interfaces";
 import QueryFields from "./QueryFields";
 import Sort from "./Sort";
@@ -7,6 +7,7 @@ import Page from "./Page";
 import PerPage from "./PerPage";
 import With from "./With";
 import Trashed from "./Trashed";
+import Conditions from "./Conditions";
 import { QueryFeature } from "../../../Enums";
 import { isQueryFeatureSupported } from "../../../helpers";
 
@@ -14,16 +15,35 @@ const Container = styled.div`
   margin-bottom: 30px;
 `;
 
-const Conditions = () => {
-  return <Li>q: Conditions</Li>;
+export const DEFAULT_OPTIONS: IOptions = {
+  fields: true,
+  sort: true,
+  page: true,
+  perPage: true,
+  with: true,
+  conditions: true,
 };
+
+export interface IOptions {
+  fields: boolean;
+  sort: boolean;
+  page: boolean;
+  perPage: boolean;
+  with: boolean;
+  conditions: boolean;
+}
 
 interface IQueryStringProps {
   route: IRoute;
   version: IVersion;
+  options: IOptions;
 }
 
-export default function QueryString({ route, version }: IQueryStringProps) {
+export default function QueryString({
+  route,
+  version,
+  options = DEFAULT_OPTIONS,
+}: IQueryStringProps) {
   const trashedFeature = isQueryFeatureSupported(
     route.queryLimits,
     QueryFeature.Trashed
@@ -33,13 +53,13 @@ export default function QueryString({ route, version }: IQueryStringProps) {
     <Container>
       <h3>Query string</h3>
       <Ul>
-        <QueryFields route={route} />
-        <Sort route={route} />
-        <Page route={route} />
-        <PerPage route={route} version={version} />
-        <With route={route} version={version} />
+        {options.fields && <QueryFields route={route} />}
+        {options.sort && <Sort route={route} />}
+        {options.page && <Page route={route} />}
+        {options.perPage && <PerPage route={route} version={version} />}
+        {options.with && <With route={route} version={version} />}
+        {options.conditions && <Conditions />}
         {trashedFeature && <Trashed />}
-        <Conditions />
       </Ul>
     </Container>
   );
