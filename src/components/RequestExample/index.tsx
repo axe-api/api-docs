@@ -35,7 +35,6 @@ const URL = styled.span`
 const QueryString = styled.span`
   color: #e4eb45;
   margin-left: 1px;
-  font-weight: 500;
 `;
 
 interface IRequestExampleProps {

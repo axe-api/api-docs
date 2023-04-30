@@ -16,7 +16,10 @@ interface IWithProps {
 }
 
 const With = ({ route, version }: IWithProps) => {
-  console.log(route.relations);
+  if (route.relations.length === 0) {
+    return <></>;
+  }
+
   return (
     <Li>
       <Feature title="with" description="Listable related models">
