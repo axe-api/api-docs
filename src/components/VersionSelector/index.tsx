@@ -89,7 +89,7 @@ function VersionSelector() {
       <Title>API Version:</Title>
       <ActiveVersion type="button" onClick={() => setActive(!isActive)}>
         <div>v2</div>
-        <ArrowDown height={24} width={24} />
+        <ArrowDown height={16} width={16} />
       </ActiveVersion>
 
       {isActive && (

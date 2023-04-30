@@ -24,10 +24,14 @@ const URL = styled.div`
   font-family: "Plus Jakarta Sans";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 16px;
   color: #ffffff;
   flex-grow: 2;
+`;
+
+const Origin = styled.span`
+  color: #aaa;
 `;
 
 const CopyButton = styled.button`
@@ -42,6 +46,8 @@ interface IURLBarProps {
 }
 
 function URLBar({ route, zebra }: IURLBarProps) {
+  const { origin } = window.location;
+  console.log(window.location);
   return (
     <Container className={`bg-${zebra}`}>
       <HTTPMethod
@@ -51,6 +57,7 @@ function URLBar({ route, zebra }: IURLBarProps) {
         {route.method}
       </HTTPMethod>
       <URL>
+        <Origin>{origin}</Origin>
         <ColoredURL url={route.url} />
       </URL>
       <CopyButton type="button">
