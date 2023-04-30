@@ -53,13 +53,13 @@ export default function QueryString({
     <Container>
       <h3>Query string</h3>
       <Ul>
-        {options.fields && <QueryFields route={route} />}
-        {options.sort && <Sort route={route} />}
         {options.page && <Page route={route} />}
         {options.perPage && <PerPage route={route} version={version} />}
+        {options.sort && <Sort route={route} />}
+        {options.fields && <QueryFields route={route} />}
         {options.with && <With route={route} version={version} />}
-        {options.conditions && <Conditions route={route} />}
         {trashedFeature && <Trashed route={route} />}
+        {options.conditions && <Conditions route={route} />}
       </Ul>
     </Container>
   );

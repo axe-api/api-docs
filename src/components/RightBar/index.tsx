@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { NAVBAR_HEIGHT } from "../Sizes";
-import URLBar from "../URLBar";
 import CodeSample from "../CodeSample";
 
 const Container = styled.div`
@@ -22,7 +21,6 @@ const Container = styled.div`
 function RightBar() {
   return (
     <Container>
-      <URLBar />
       <CodeSample />
       <CodeSample />
     </Container>

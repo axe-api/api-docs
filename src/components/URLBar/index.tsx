@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import HTTPMethod from "../HTTPMethod";
 import { CopyIcon } from "../Icons";
+import { IRoute } from "../../Interfaces";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.primary};
@@ -27,13 +28,17 @@ const CopyButton = styled.button`
   border: none;
 `;
 
-function URLBar() {
+interface IURLBarProps {
+  route: IRoute;
+}
+
+function URLBar({ route }: IURLBarProps) {
   return (
     <Container>
       <HTTPMethod color="#1D2B25" backgroundColor="#00F4B9">
-        GET
+        {route.method}
       </HTTPMethod>
-      <URL>http://localhost:4000/api/users/:userId/posts/:id</URL>
+      <URL>{route.url}</URL>
       <CopyButton type="button">
         <CopyIcon width={24} height={24} />
       </CopyButton>

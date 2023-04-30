@@ -47,11 +47,11 @@ function ResourceContent({ route, version }: IResourceContentProps) {
       <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
         {route.model} / {HANDLER_TITLE_MAP[route.handler]}
       </Title>
-      <URLBar />
+      <URLBar route={route} />
 
       {route.handler === "paginate" && (
         <>
-          <Params />
+          <Params route={route} />
           <QueryString
             route={route}
             version={version}
@@ -62,7 +62,7 @@ function ResourceContent({ route, version }: IResourceContentProps) {
 
       {route.handler === "show" && (
         <>
-          <Params />
+          <Params route={route} />
           <QueryString
             route={route}
             version={version}
