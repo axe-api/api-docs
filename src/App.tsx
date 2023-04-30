@@ -15,7 +15,12 @@ function App() {
   });
 
   const fetchDocs = async () => {
-    const response = await fetch("/api_docs");
+    const response = await fetch(
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000/api_docs"
+        : "/api_docs"
+    );
+
     const result = await response.json();
     setDocs({
       ...docs,
