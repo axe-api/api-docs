@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ColoredURL from "../ColoredURL";
 
 const Container = styled.div`
   margin-top: 20px;
@@ -53,7 +54,9 @@ export default function RequestExample({
       <Title>Request Example</Title>
       <Line>
         <Method>{method}</Method>
-        <URL>{url}</URL>
+        <URL>
+          <ColoredURL url={url} />
+        </URL>
         {queryString ? <QueryString>?{queryString}</QueryString> : ""}
       </Line>
     </Container>

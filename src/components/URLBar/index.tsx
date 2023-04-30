@@ -2,6 +2,7 @@ import styled from "styled-components";
 import HTTPMethod from "../HTTPMethod";
 import { CopyIcon } from "../Icons";
 import { IRoute } from "../../Interfaces";
+import ColoredURL from "../ColoredURL";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.primary};
@@ -38,7 +39,9 @@ function URLBar({ route }: IURLBarProps) {
       <HTTPMethod color="#1D2B25" backgroundColor="#00F4B9">
         {route.method}
       </HTTPMethod>
-      <URL>{route.url}</URL>
+      <URL>
+        <ColoredURL url={route.url} />
+      </URL>
       <CopyButton type="button">
         <CopyIcon width={24} height={24} />
       </CopyButton>
