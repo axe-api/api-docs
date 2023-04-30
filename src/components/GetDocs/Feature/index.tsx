@@ -31,7 +31,7 @@ const Content = styled.div`
 interface IFeatureProps {
   title: string;
   description: string;
-  children: any;
+  children?: any;
 }
 
 export default function Feature({
@@ -45,7 +45,7 @@ export default function Feature({
         <Title>{title}</Title>
         <Description>{description}</Description>
       </TitleSection>
-      <Content>{children}</Content>
+      {children && <Content>{children}</Content>}
     </Container>
   );
 }
