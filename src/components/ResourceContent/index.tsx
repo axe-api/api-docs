@@ -7,7 +7,20 @@ import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
 
 const Container = styled.div`
-  margin-bottom: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  &.bg-1 {
+    background-color: #1c1c1c;
+  }
+`;
+
+export const FixedBox = styled.div`
+  width: 100%;
+  max-width: 800px;
 `;
 
 const Title = styled.a`
@@ -17,9 +30,7 @@ const Title = styled.a`
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  padding-bottom: 24px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #282828;
+  margin-bottom: 10px;
   color: white;
   text-decoration: none;
 
@@ -35,34 +46,33 @@ const Title = styled.a`
 interface IResourceContentProps {
   route: IRoute;
   version: IVersion;
+  zebra: number;
 }
 
 export const toURLLink = (route: IRoute) => {
   return `${route.model}-${HANDLER_TITLE_MAP[route.handler]}`.toLowerCase();
 };
 
-function ResourceContent({ route, version }: IResourceContentProps) {
+function ResourceContent({ route, version, zebra }: IResourceContentProps) {
   return (
-    <Container>
-      <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
-        {route.model} / {HANDLER_TITLE_MAP[route.handler]}
-      </Title>
-      <URLBar route={route} />
+    <Container className={`bg-${zebra}`}>
+      <FixedBox>
+        <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
+          {route.model} / {HANDLER_TITLE_MAP[route.handler]}
+        </Title>
+        <URLBar route={route} />
 
-      {route.handler === "paginate" && (
-        <>
-          <Params route={route} />
+        <Params route={route} />
+
+        {route.handler === "paginate" && (
           <QueryString
             route={route}
             version={version}
             options={DEFAULT_OPTIONS}
           />
-        </>
-      )}
+        )}
 
-      {route.handler === "show" && (
-        <>
-          <Params route={route} />
+        {route.handler === "show" && (
           <QueryString
             route={route}
             version={version}
@@ -75,12 +85,12 @@ function ResourceContent({ route, version }: IResourceContentProps) {
               conditions: true,
             }}
           />
-        </>
-      )}
+        )}
 
-      {["store", "update", "patch"].includes(route.handler) && (
-        <RequestBody route={route} />
-      )}
+        {["store", "update", "patch"].includes(route.handler) && (
+          <RequestBody route={route} />
+        )}
+      </FixedBox>
     </Container>
   );
 }

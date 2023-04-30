@@ -3,7 +3,6 @@ import Validation from "../Validation";
 import { IColumn } from "../../Interfaces";
 
 const Container = styled.div`
-  border-bottom: 1px solid #2b2b2b;
   padding-bottom: 16px;
   margin-bottom: 40px;
 `;

@@ -10,13 +10,6 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.primary};
   margin-left: ${LEFTBAR_WIDTH}px;
   margin-top: ${NAVBAR_HEIGHT}px;
-  display: flex;
-  justify-content: center;
-`;
-
-const FixedSizeBox = styled.div`
-  max-width: 800px;
-  padding: 20px;
 `;
 
 function Content() {
@@ -29,12 +22,15 @@ function Content() {
 
   return (
     <Container>
-      <FixedSizeBox>
-        <GeneralInformation />
-        {data.routes.map((route, index) => (
-          <ResourceContent key={index} route={route} version={version} />
-        ))}
-      </FixedSizeBox>
+      <GeneralInformation />
+      {data.routes.map((route, index) => (
+        <ResourceContent
+          zebra={index % 2}
+          key={index}
+          route={route}
+          version={version}
+        />
+      ))}
     </Container>
   );
 }

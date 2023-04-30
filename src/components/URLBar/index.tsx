@@ -3,14 +3,17 @@ import HTTPMethod from "../HTTPMethod";
 import { CopyIcon } from "../Icons";
 import { IRoute } from "../../Interfaces";
 import ColoredURL from "../ColoredURL";
+import { COLOR_MAP } from "../../Constants";
 
 const Container = styled.div`
-  background-color: ${({ theme }) => theme.primary};
+  background-color: ${({ theme }) => theme.secondary};
   padding: 10px 8px;
   display: flex;
   gap: 8px;
   justify-content: space-between;
   align-items: center;
+  border-radius: 6px;
+  margin-bottom: 20px;
 `;
 
 const URL = styled.div`
@@ -36,7 +39,10 @@ interface IURLBarProps {
 function URLBar({ route }: IURLBarProps) {
   return (
     <Container>
-      <HTTPMethod color="#1D2B25" backgroundColor="#00F4B9">
+      <HTTPMethod
+        color={COLOR_MAP[route.method].color}
+        backgroundColor={COLOR_MAP[route.method].bgColor}
+      >
         {route.method}
       </HTTPMethod>
       <URL>

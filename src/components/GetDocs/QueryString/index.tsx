@@ -17,7 +17,6 @@ const Container = styled.div`
 const Items = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
 `;
 
 export const DEFAULT_OPTIONS: IOptions = {
