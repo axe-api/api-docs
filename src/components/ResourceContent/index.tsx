@@ -2,8 +2,9 @@ import styled from "styled-components";
 import RequestBody from "../RequestBody";
 import { IRoute } from "../../Interfaces";
 import { HANDLER_TITLE_MAP } from "../../Constants";
-import PaginateContent from "../PaginateContent";
 import URLBar from "../URLBar";
+import QueryString from "../GetDocs/QueryString";
+import Params from "../GetDocs/Params";
 
 const Title = styled.a`
   display: block;
@@ -42,8 +43,15 @@ function ResourceContent({ route }: IResourceContentProps) {
         {route.model} / {HANDLER_TITLE_MAP[route.handler]}
       </Title>
       <URLBar />
-      {route.handler === "paginate" && <PaginateContent />}
-      {["POST", "PUT", "PATCH", "DELETE"].includes(route.method) && (
+
+      {["paginate", "show"].includes(route.handler) && (
+        <>
+          <Params />
+          <QueryString />
+        </>
+      )}
+
+      {["store", "update", "patch"].includes(route.handler) && (
         <RequestBody route={route} />
       )}
     </div>

@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import Header from "./components/Header";
 import LeftBar from "./components/LeftBar";
-import RightBar from "./components/RightBar";
 import Content from "./components/Content";
 import { useEffect, useState } from "react";
 import { DocContext } from "./contexts/DocContext";
