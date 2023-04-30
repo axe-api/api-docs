@@ -74,11 +74,11 @@ export const toURLLink = (route: IRoute) => {
 
 function ResourceContent({ route, version, zebra }: IResourceContentProps) {
   return (
-    <Container className={`bg-${zebra}`}>
+    <Container className={`bg-${zebra}`} id={toURLLink(route)}>
       <Sticky className={`bg-${zebra}`}>
         <Flex>
           <FixedBox>
-            <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
+            <Title href={`#` + toURLLink(route)}>
               {route.model} / {HANDLER_TITLE_MAP[route.handler]}
             </Title>
             <URLBar zebra={zebra} route={route} />

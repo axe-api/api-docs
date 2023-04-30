@@ -42,7 +42,7 @@ function HandlerMenu({ route }: IHandlerMenuProps) {
     if (element) {
       const { top } = element.getBoundingClientRect();
       window.scrollTo({
-        top: top - bodyRect.top - 30,
+        top: top - bodyRect.top,
         behavior: "smooth",
       });
     }

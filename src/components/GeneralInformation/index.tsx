@@ -1,11 +1,15 @@
+/* eslint-disable react/jsx-no-target-blank */
 import styled from "styled-components";
 import { FixedBox } from "../ResourceContent";
+import ExternalLink from "../External";
 
 const Container = styled.div`
-  margin-bottom: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #1c1c1c;
+  padding-top: 30px;
+  padding-bottom: 50px;
 `;
 
 function GeneralInformation() {
@@ -13,17 +17,15 @@ function GeneralInformation() {
     <Container>
       <FixedBox>
         <h1>Axe API Docs</h1>
-
         <p>
-          Deserunt nulla nisi sunt nulla ad duis magna dolor elit ipsum. Ut ut
-          fugiat ex commodo magna culpa enim velit ad eu. Eu non quis
-          adipisicing incididunt magna nulla ad qui.
+          This API project is built by{" "}
+          <ExternalLink href="https://axe-api.com">Axe API</ExternalLink>. Axe
+          API is a Node.js framework that helps you create a Rest API in a
+          declarative way quickly. 🪓
         </p>
-
         <p>
-          Deserunt nulla nisi sunt nulla ad duis magna dolor elit ipsum. Ut ut
-          fugiat ex commodo magna culpa enim velit ad eu. Eu non quis
-          adipisicing incididunt magna nulla ad qui.
+          You can find all possible route documentation on this page. Also, you
+          can use the Axe API documentation page to get more information.
         </p>
       </FixedBox>
     </Container>
