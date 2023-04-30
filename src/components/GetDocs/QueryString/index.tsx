@@ -15,6 +15,12 @@ const Container = styled.div`
   margin-bottom: 30px;
 `;
 
+const Items = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
 export const DEFAULT_OPTIONS: IOptions = {
   fields: true,
   sort: true,
@@ -52,7 +58,7 @@ export default function QueryString({
   return (
     <Container>
       <h3>Query string</h3>
-      <Ul>
+      <Items>
         {options.page && <Page route={route} />}
         {options.perPage && <PerPage route={route} version={version} />}
         {options.sort && <Sort route={route} />}
@@ -60,7 +66,7 @@ export default function QueryString({
         {options.with && <With route={route} version={version} />}
         {trashedFeature && <Trashed route={route} />}
         {options.conditions && <Conditions route={route} />}
-      </Ul>
+      </Items>
     </Container>
   );
 }

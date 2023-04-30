@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Ul, Li } from "../shared";
 import Feature from "../Feature";
 import { IRoute } from "../../../Interfaces";
 
 const Container = styled.div`
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
+
+const Items = styled.div``;
 
 interface IParamsProps {
   route: IRoute;
@@ -33,13 +34,15 @@ export default function Params({ route }: IParamsProps) {
   return (
     <Container>
       <h3>Params</h3>
-      <Ul>
+      <Items>
         {params.map((param, index) => (
-          <Li key={index}>
-            <Feature title={param} description={getDescription(route, param)} />
-          </Li>
+          <Feature
+            key={index}
+            title={param}
+            description={getDescription(route, param)}
+          />
         ))}
-      </Ul>
+      </Items>
     </Container>
   );
 }

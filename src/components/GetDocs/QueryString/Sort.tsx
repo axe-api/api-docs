@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { IRoute } from "../../../Interfaces";
 import Feature from "../Feature";
-import { Li } from "../shared";
 import DBColumn from "../../DBColumn";
 import RequestExample from "../../RequestExample";
 
@@ -20,25 +19,23 @@ const Sort = ({ route }: ISortProps) => {
   );
 
   return (
-    <Li>
-      <Feature
-        title="sort"
-        description="The field to sort the data (ASC: id, DESC: -id)"
-      >
-        <FlexBox>
-          {sortColumns.map((column) => (
-            <DBColumn key={column.name} column={column} />
-          ))}
-        </FlexBox>
-        <RequestExample
-          method="GET"
-          url={route.url}
-          queryString={`sort=${sortColumns.map((item, index) =>
-            index % 2 === 0 ? item.name : `-${item.name}`
-          )}`}
-        />
-      </Feature>
-    </Li>
+    <Feature
+      title="sort"
+      description="The field to sort the data (ASC: id, DESC: -id)"
+    >
+      <FlexBox>
+        {sortColumns.map((column) => (
+          <DBColumn key={column.name} column={column} />
+        ))}
+      </FlexBox>
+      <RequestExample
+        method="GET"
+        url={route.url}
+        queryString={`sort=${sortColumns.map((item, index) =>
+          index % 2 === 0 ? item.name : `-${item.name}`
+        )}`}
+      />
+    </Feature>
   );
 };
 

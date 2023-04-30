@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { IRoute } from "../../../Interfaces";
 import Feature from "../Feature";
-import { Li } from "../shared";
 import DBColumn from "../../DBColumn";
 import { QueryFeature } from "../../../Enums";
 import { DBColumnStyle } from "../../DBColumn";
@@ -26,24 +25,19 @@ const QueryFields = ({ route }: IQueryFieldsProps) => {
   );
 
   return (
-    <Li>
-      <Feature
-        title="fields"
-        description="The model fields that can be fetched."
-      >
-        <FlexBox>
-          {fieldsAll && <DBColumnStyle>All (*)</DBColumnStyle>}
-          {fetchableColumns.map((column) => (
-            <DBColumn key={column.name} column={column} />
-          ))}
-        </FlexBox>
-        <RequestExample
-          method="GET"
-          url={route.url}
-          queryString={`fields=${fetchableColumns.map((item) => item.name)}`}
-        />
-      </Feature>
-    </Li>
+    <Feature title="fields" description="The model fields that can be fetched.">
+      <FlexBox>
+        {fieldsAll && <DBColumnStyle>All (*)</DBColumnStyle>}
+        {fetchableColumns.map((column) => (
+          <DBColumn key={column.name} column={column} />
+        ))}
+      </FlexBox>
+      <RequestExample
+        method="GET"
+        url={route.url}
+        queryString={`fields=${fetchableColumns.map((item) => item.name)}`}
+      />
+    </Feature>
   );
 };
 
