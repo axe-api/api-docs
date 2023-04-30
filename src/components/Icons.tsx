@@ -60,7 +60,7 @@ export const ArrowDown = ({ width, height }: IconSize) => {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M3.29289 8.70711L4.70711 7.29289L12 14.5858L19.2929 7.29289L20.7071 8.70711L12 17.4142L3.29289 8.70711Z"
-        fill="white"
+        fill="currentColor"
       />
     </svg>
   );

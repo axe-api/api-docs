@@ -48,6 +48,7 @@ export interface IVersionConfig {
 }
 
 export interface IVersion {
+  name: string;
   config: IVersionConfig;
 }
 
