@@ -6,6 +6,10 @@ import URLBar from "../URLBar";
 import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
 
+const Container = styled.div`
+  margin-bottom: 140px;
+`;
+
 const Title = styled.a`
   display: block;
   font-family: "Plus Jakarta Sans";
@@ -39,7 +43,7 @@ export const toURLLink = (route: IRoute) => {
 
 function ResourceContent({ route, version }: IResourceContentProps) {
   return (
-    <div>
+    <Container>
       <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
         {route.model} / {HANDLER_TITLE_MAP[route.handler]}
       </Title>
@@ -77,7 +81,7 @@ function ResourceContent({ route, version }: IResourceContentProps) {
       {["store", "update", "patch"].includes(route.handler) && (
         <RequestBody route={route} />
       )}
-    </div>
+    </Container>
   );
 }
 
