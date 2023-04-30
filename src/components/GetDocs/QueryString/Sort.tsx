@@ -3,6 +3,7 @@ import { IRoute } from "../../../Interfaces";
 import Feature from "../Feature";
 import { Li } from "../shared";
 import DBColumn from "../../DBColumn";
+import RequestExample from "../../RequestExample";
 
 const FlexBox = styled.div`
   display: flex;
@@ -29,6 +30,13 @@ const Sort = ({ route }: ISortProps) => {
             <DBColumn key={column.name} column={column} />
           ))}
         </FlexBox>
+        <RequestExample
+          method="GET"
+          url={route.url}
+          queryString={`sort=${sortColumns.map((item, index) =>
+            index % 2 === 0 ? item.name : `-${item.name}`
+          )}`}
+        />
       </Feature>
     </Li>
   );

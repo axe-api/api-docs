@@ -1,5 +1,6 @@
 import { IRoute, IVersion } from "../../../Interfaces";
 import { DBColumnStyle } from "../../DBColumn";
+import RequestExample from "../../RequestExample";
 import Feature from "../Feature";
 import { Li } from "../shared";
 
@@ -19,8 +20,15 @@ const PerPage = ({ route, version }: IPerPageProps) => {
         title="per_page"
         description="Number of records to list on a page"
       >
-        The default value is <DBColumnStyle>{perPage}</DBColumnStyle>. The
-        client can send a value between {minPerPage}-{maxPerPage}.
+        <div>
+          The default value is <DBColumnStyle>{perPage}</DBColumnStyle>. The
+          client can send a value between {minPerPage}-{maxPerPage}.
+        </div>
+        <RequestExample
+          method="GET"
+          url={route.url}
+          queryString={`per_page=${perPage}`}
+        />
       </Feature>
     </Li>
   );

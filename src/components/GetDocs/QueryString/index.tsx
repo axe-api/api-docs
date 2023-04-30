@@ -58,8 +58,8 @@ export default function QueryString({
         {options.page && <Page route={route} />}
         {options.perPage && <PerPage route={route} version={version} />}
         {options.with && <With route={route} version={version} />}
-        {options.conditions && <Conditions />}
-        {trashedFeature && <Trashed />}
+        {options.conditions && <Conditions route={route} />}
+        {trashedFeature && <Trashed route={route} />}
       </Ul>
     </Container>
   );

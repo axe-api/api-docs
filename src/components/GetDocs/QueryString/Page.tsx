@@ -1,5 +1,6 @@
 import { IRoute } from "../../../Interfaces";
 import { DBColumnStyle } from "../../DBColumn";
+import RequestExample from "../../RequestExample";
 import Feature from "../Feature";
 import { Li } from "../shared";
 
@@ -12,6 +13,7 @@ const Page = ({ route }: IPageProps) => {
     <Li>
       <Feature title="page" description="The page number to list">
         Default value: <DBColumnStyle>1</DBColumnStyle>
+        <RequestExample method="GET" url={route.url} queryString="page=1" />
       </Feature>
     </Li>
   );

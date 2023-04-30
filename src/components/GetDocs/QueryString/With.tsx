@@ -3,6 +3,7 @@ import { IRoute, IVersion } from "../../../Interfaces";
 import { DBColumnStyle } from "../../DBColumn";
 import Feature from "../Feature";
 import { Li } from "../shared";
+import RequestExample from "../../RequestExample";
 
 const Relations = styled.div`
   display: flex;
@@ -24,6 +25,12 @@ const With = ({ route, version }: IWithProps) => {
             <DBColumnStyle key={relation.name}>{relation.name}</DBColumnStyle>
           ))}
         </Relations>
+
+        <RequestExample
+          method="GET"
+          url={route.url}
+          queryString={`with=${route.relations.map((item) => item.name)}`}
+        />
       </Feature>
     </Li>
   );
