@@ -3,6 +3,7 @@ import RequestBody from "../RequestBody";
 import { IRoute } from "../../Interfaces";
 import { HANDLER_TITLE_MAP } from "../../Constants";
 import PaginateContent from "../PaginateContent";
+import URLBar from "../URLBar";
 
 const Title = styled.a`
   display: block;
@@ -40,6 +41,7 @@ function ResourceContent({ route }: IResourceContentProps) {
       <Title id={toURLLink(route)} href={`#` + toURLLink(route)}>
         {route.model} / {HANDLER_TITLE_MAP[route.handler]}
       </Title>
+      <URLBar />
       {route.handler === "paginate" && <PaginateContent />}
       {["POST", "PUT", "PATCH", "DELETE"].includes(route.method) && (
         <RequestBody route={route} />

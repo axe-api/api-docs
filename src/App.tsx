@@ -15,7 +15,7 @@ function App() {
   });
 
   const fetchDocs = async () => {
-    const response = await fetch("http://localhost:3000/docs");
+    const response = await fetch("http://localhost:3000/api_docs");
     const result = await response.json();
     setDocs({
       ...docs,
@@ -48,7 +48,7 @@ function App() {
         <Header />
         <LeftBar />
         <Content />
-        <RightBar />
+        {/* <RightBar /> */}
       </DocContext.Provider>
     </Provider>
   );

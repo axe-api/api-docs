@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NAVBAR_HEIGHT, RIGHTBAR_WIDTH } from "../Sizes";
+import { NAVBAR_HEIGHT } from "../Sizes";
 import URLBar from "../URLBar";
 import CodeSample from "../CodeSample";
 
@@ -8,7 +8,6 @@ const Container = styled.div`
   right: 0px;
   top: ${NAVBAR_HEIGHT}px;
   height: calc(100% - ${NAVBAR_HEIGHT}px);
-  width: ${RIGHTBAR_WIDTH}px;
   background-color: yellow;
   padding: 24px;
   background-color: ${({ theme }) => theme.secondary};
