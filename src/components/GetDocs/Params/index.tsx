@@ -26,6 +26,10 @@ const getDescription = (route: IRoute, param: string): string => {
 export default function Params({ route }: IParamsProps) {
   const params = route.url.split("/").filter((item) => item.startsWith(":"));
 
+  if (params.length === 0) {
+    return <></>;
+  }
+
   return (
     <Container>
       <h3>Params</h3>
