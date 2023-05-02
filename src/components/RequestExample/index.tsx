@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import ColoredURL from "../ColoredURL";
+import { useContext } from "react";
+import { IDoc } from "../../Interfaces";
+import { DocContext } from "../../contexts/DocContext";
 
 const Container = styled.div`
   margin-top: 20px;
@@ -48,12 +52,16 @@ export default function RequestExample({
   url,
   queryString,
 }: IRequestExampleProps) {
+  const data = useContext<IDoc>(DocContext);
+
   return (
     <Container>
       <Title>Request Example</Title>
       <Line>
         <Method>{method}</Method>
-        <URL>{/* <ColoredURL url={url} /> */}</URL>
+        <URL>
+          <ColoredURL url={url} version={data.selectedVersion} />
+        </URL>
         {queryString ? <QueryString>?{queryString}</QueryString> : ""}
       </Line>
     </Container>
