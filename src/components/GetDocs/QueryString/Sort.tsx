@@ -14,9 +14,9 @@ interface ISortProps {
 }
 
 const Sort = ({ route }: ISortProps) => {
-  const sortColumns = route.columns.filter(
-    (column) => !route.hiddens || !route.hiddens.includes(column.name)
-  );
+  const sortColumns = route.columns
+    .filter((column) => !route.hiddens || !route.hiddens.includes(column.name))
+    .slice(0, 2);
 
   return (
     <Feature

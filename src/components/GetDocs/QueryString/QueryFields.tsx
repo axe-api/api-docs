@@ -20,9 +20,9 @@ const QueryFields = ({ route }: IQueryFieldsProps) => {
     (item) => item.feature === QueryFeature.FieldsAll
   );
 
-  const fetchableColumns = route.columns.filter(
-    (column) => !route.hiddens || !route.hiddens.includes(column.name)
-  );
+  const fetchableColumns = route.columns
+    .filter((column) => !route.hiddens || !route.hiddens.includes(column.name))
+    .slice(0, 2);
 
   return (
     <Feature title="fields" description="The model fields that can be fetched.">
