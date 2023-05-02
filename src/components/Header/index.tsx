@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { NAVBAR_HEIGHT } from "../Sizes";
 import Logo from "../Logo";
 import VersionSelector from "../VersionSelector";
+import { IVersion } from "../../Interfaces";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.primary};
@@ -18,11 +19,15 @@ const Container = styled.div`
   z-index: 99999;
 `;
 
-function Header() {
+interface IHeaderProps {
+  setVersion: (version: IVersion) => void;
+}
+
+function Header({ setVersion }: IHeaderProps) {
   return (
     <Container>
       <Logo />
-      <VersionSelector />
+      <VersionSelector setVersion={setVersion} />
     </Container>
   );
 }

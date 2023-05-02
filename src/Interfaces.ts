@@ -20,6 +20,7 @@ export interface IRelation {
 }
 
 export interface IRoute {
+  version: string;
   model: string;
   handler: string;
   url: string;
@@ -53,6 +54,7 @@ export interface IVersion {
 }
 
 export interface IDoc {
+  selectedVersion: string;
   routes: IRoute[];
   versions: IVersion[];
 }

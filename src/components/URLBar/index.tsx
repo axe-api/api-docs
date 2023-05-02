@@ -47,7 +47,6 @@ interface IURLBarProps {
 
 function URLBar({ route, zebra }: IURLBarProps) {
   const { origin } = window.location;
-  console.log(window.location);
   return (
     <Container className={`bg-${zebra}`}>
       <HTTPMethod

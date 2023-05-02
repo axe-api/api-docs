@@ -14,7 +14,10 @@ const Container = styled.div`
 
 function Content() {
   const data = useContext<IDoc>(DocContext);
-  const version = data.versions.at(0);
+  console.log(data.selectedVersion);
+  const version = data.versions.find(
+    (version) => version.name === data.selectedVersion
+  );
 
   if (!version) {
     return <></>;
@@ -23,14 +26,16 @@ function Content() {
   return (
     <Container>
       <GeneralInformation />
-      {data.routes.map((route, index) => (
-        <ResourceContent
-          zebra={index % 2}
-          key={index}
-          route={route}
-          version={version}
-        />
-      ))}
+      {data.routes
+        .filter((route) => route.version === version.name)
+        .map((route, index) => (
+          <ResourceContent
+            zebra={index % 2}
+            key={index}
+            route={route}
+            version={version}
+          />
+        ))}
     </Container>
   );
 }

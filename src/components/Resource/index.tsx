@@ -67,9 +67,11 @@ function Resource({ model }: IResourceProps) {
       </Title>
       {isOpen && (
         <Handlers>
-          {routes.map((item) => (
-            <HandlerMenu key={`${item.method}.${item.url}`} route={item} />
-          ))}
+          {routes
+            .filter((route) => route.version === data.selectedVersion)
+            .map((item) => (
+              <HandlerMenu key={`${item.method}.${item.url}`} route={item} />
+            ))}
         </Handlers>
       )}
     </Container>

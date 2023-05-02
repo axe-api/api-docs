@@ -4,12 +4,13 @@ import LeftBar from "./components/LeftBar";
 import Content from "./components/Content";
 import { useEffect, useState } from "react";
 import { DocContext } from "./contexts/DocContext";
-import { IDoc, IRoute } from "./Interfaces";
+import { IDoc, IRoute, IVersion } from "./Interfaces";
 import store from "./store";
 import { HANDLER_TITLE_MAP } from "./Constants";
 
 function App() {
   const [docs, setDocs] = useState<IDoc>({
+    selectedVersion: "",
     routes: [],
     versions: [],
   });
@@ -22,6 +23,7 @@ function App() {
     );
 
     const result = await response.json();
+
     setDocs({
       ...docs,
       ...{
@@ -35,6 +37,14 @@ function App() {
         }),
         versions: result.versions,
       },
+      selectedVersion: result.versions.at(0)?.name,
+    });
+  };
+
+  const setVersion = (version: IVersion) => {
+    setDocs({
+      ...docs,
+      selectedVersion: version.name,
     });
   };
 
@@ -50,7 +60,7 @@ function App() {
   return (
     <Provider store={store}>
       <DocContext.Provider value={docs}>
-        <Header />
+        <Header setVersion={setVersion} />
         <LeftBar />
         <Content />
         {/* <RightBar /> */}

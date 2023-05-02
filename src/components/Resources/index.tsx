@@ -18,7 +18,10 @@ function Resources() {
   }, [parent]);
 
   // We should filder models
-  let filteredRoutes = data.routes;
+  let filteredRoutes = data.routes.filter(
+    (route) => route.version === data.selectedVersion
+  );
+
   if (search) {
     filteredRoutes = data.routes.filter((item) =>
       item.searchKey.includes(search)

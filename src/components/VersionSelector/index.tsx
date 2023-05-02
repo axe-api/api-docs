@@ -76,11 +76,16 @@ const VersionSelectButton = styled.button`
   }
 `;
 
-function VersionSelector() {
+interface IVersionSelectorProps {
+  setVersion: (version: IVersion) => void;
+}
+
+function VersionSelector({ setVersion }: IVersionSelectorProps) {
   const data = useContext<IDoc>(DocContext);
   const [isActive, setActive] = useState(false);
 
   const handleVersionSelect = (version: IVersion) => {
+    setVersion(version);
     setActive(false);
   };
 
@@ -88,7 +93,7 @@ function VersionSelector() {
     <Container>
       <Title>API Version:</Title>
       <ActiveVersion type="button" onClick={() => setActive(!isActive)}>
-        <div>v2</div>
+        <div>{data.selectedVersion}</div>
         <ArrowDown height={16} width={16} />
       </ActiveVersion>
 
@@ -96,6 +101,7 @@ function VersionSelector() {
         <MenuBox>
           {data.versions.map((version) => (
             <VersionSelectButton
+              key={version.name}
               type="button"
               onClick={() => handleVersionSelect(version)}
             >

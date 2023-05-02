@@ -10,25 +10,37 @@ const Param = styled(Simple)`
 interface IColoredURLProps {
   url: string;
 }
+
+interface ISectionProps {
+  section: string;
+  index: number;
+  parts: string[];
+}
+
+const Section = ({ section, index, parts }: ISectionProps) => {
+  if (section.startsWith(":")) {
+    return (
+      <>
+        <Param>{section}</Param>/
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Simple>{section}</Simple>
+      {index < parts.length - 1 ? "/" : ""}
+    </>
+  );
+};
+
 export default function ColoredURL({ url }: IColoredURLProps) {
   const parts = url.split("/");
   return (
     <>
-      {parts.map((section: string, index: number) => {
-        if (section.startsWith(":")) {
-          return (
-            <>
-              <Param>{section}</Param>/
-            </>
-          );
-        }
-        return (
-          <>
-            <Simple>{section}</Simple>
-            {index < parts.length - 1 ? "/" : ""}
-          </>
-        );
-      })}
+      {parts.map((section: string, index: number) => (
+        <Section key={index} section={section} index={index} parts={parts} />
+      ))}
     </>
   );
 }
