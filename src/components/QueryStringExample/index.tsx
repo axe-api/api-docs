@@ -15,10 +15,10 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.3);
   margin-bottom: 20px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 12px;
 `;
 
 const Line = styled.div`
@@ -41,22 +41,22 @@ const QueryString = styled.span`
   margin-left: 1px;
 `;
 
-interface IRequestExampleProps {
+interface IQueryStringExampleProps {
   method: string;
   url: string;
   queryString?: string;
 }
 
-export default function RequestExample({
+export default function QueryStringExample({
   method,
   url,
   queryString,
-}: IRequestExampleProps) {
+}: IQueryStringExampleProps) {
   const data = useContext<IDoc>(DocContext);
 
   return (
     <Container>
-      <Title>Request Example</Title>
+      <Title>Example</Title>
       <Line>
         <Method>{method}</Method>
         <URL>

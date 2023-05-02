@@ -4,7 +4,7 @@ import Feature from "../Feature";
 import DBColumn from "../../DBColumn";
 import { QueryFeature } from "../../../Enums";
 import { DBColumnStyle } from "../../DBColumn";
-import RequestExample from "../../RequestExample";
+import QueryStringExample from "../../QueryStringExample";
 
 const FlexBox = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ const QueryFields = ({ route }: IQueryFieldsProps) => {
           <DBColumn key={column.name} column={column} />
         ))}
       </FlexBox>
-      <RequestExample
+      <QueryStringExample
         method="GET"
         url={route.url}
         queryString={`fields=${fetchableColumns.map((item) => item.name)}`}

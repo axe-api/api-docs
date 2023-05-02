@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IRoute, IVersion } from "../../../Interfaces";
 import { DBColumnStyle } from "../../DBColumn";
 import Feature from "../Feature";
-import RequestExample from "../../RequestExample";
+import QueryStringExample from "../../QueryStringExample";
 
 const Relations = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const With = ({ route, version }: IWithProps) => {
         ))}
       </Relations>
 
-      <RequestExample
+      <QueryStringExample
         method="GET"
         url={route.url}
         queryString={`with=${route.relations.map((item) => item.name)}`}

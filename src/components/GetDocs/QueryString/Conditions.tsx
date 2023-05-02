@@ -1,5 +1,5 @@
 import { IRoute } from "../../../Interfaces";
-import RequestExample from "../../RequestExample";
+import QueryStringExample from "../../QueryStringExample";
 import Feature from "../Feature";
 
 interface IConditionsProps {
@@ -13,7 +13,7 @@ const Conditions = ({ route }: IConditionsProps) => {
 
   return (
     <Feature title="q" description="JSON query to send to filter data">
-      <RequestExample
+      <QueryStringExample
         method="GET"
         url={route.url}
         queryString={`q=[{"id":1},{"$or.${otherColumn.name}.$like":"*value*"}]`}

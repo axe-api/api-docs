@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { IRoute } from "../../../Interfaces";
 import Feature from "../Feature";
 import DBColumn from "../../DBColumn";
-import RequestExample from "../../RequestExample";
+import QueryStringExample from "../../QueryStringExample";
 
 const FlexBox = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const Sort = ({ route }: ISortProps) => {
           <DBColumn key={column.name} column={column} />
         ))}
       </FlexBox>
-      <RequestExample
+      <QueryStringExample
         method="GET"
         url={route.url}
         queryString={`sort=${sortColumns.map((item, index) =>

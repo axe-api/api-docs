@@ -1,6 +1,6 @@
 import { IRoute, IVersion } from "../../../Interfaces";
 import { DBColumnStyle } from "../../DBColumn";
-import RequestExample from "../../RequestExample";
+import QueryStringExample from "../../QueryStringExample";
 import Feature from "../Feature";
 
 interface IPerPageProps {
@@ -19,7 +19,7 @@ const PerPage = ({ route, version }: IPerPageProps) => {
         The default value is <DBColumnStyle>{perPage}</DBColumnStyle>. The
         client can send a value between {minPerPage}-{maxPerPage}.
       </div>
-      <RequestExample
+      <QueryStringExample
         method="GET"
         url={route.url}
         queryString={`per_page=${perPage}`}
