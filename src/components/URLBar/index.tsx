@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import HTTPMethod from "../HTTPMethod";
 import { CopyIcon } from "../Icons";
-import { IRoute } from "../../Interfaces";
+import { IDoc, IRoute } from "../../Interfaces";
 import ColoredURL from "../ColoredURL";
 import { COLOR_MAP } from "../../Constants";
+import { useContext } from "react";
+import { DocContext } from "../../contexts/DocContext";
 
 const Container = styled.div`
   background-color: ${({ theme }) => theme.secondary};
@@ -46,7 +48,9 @@ interface IURLBarProps {
 }
 
 function URLBar({ route, zebra }: IURLBarProps) {
+  const data = useContext<IDoc>(DocContext);
   const { origin } = window.location;
+
   return (
     <Container className={`bg-${zebra}`}>
       <HTTPMethod
@@ -57,7 +61,7 @@ function URLBar({ route, zebra }: IURLBarProps) {
       </HTTPMethod>
       <URL>
         <Origin>{origin}</Origin>
-        <ColoredURL url={route.url} />
+        <ColoredURL version={data.selectedVersion} url={route.url} />
       </URL>
       <CopyButton type="button">
         <CopyIcon width={24} height={24} />

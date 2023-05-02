@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import RequestBody from "../RequestBody";
 import { IRoute, IVersion } from "../../Interfaces";
-import { HANDLER_TITLE_MAP } from "../../Constants";
+import { HANDLER_TITLE_DESCRIPTION, HANDLER_TITLE_MAP } from "../../Constants";
 import URLBar from "../URLBar";
 import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
@@ -42,6 +42,13 @@ export const FixedBox = styled.div`
   max-width: 900px;
 `;
 
+const TitleLine = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
 const Title = styled.a`
   display: block;
   font-family: "Plus Jakarta Sans";
@@ -49,7 +56,6 @@ const Title = styled.a`
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  margin-bottom: 10px;
   color: white;
   text-decoration: none;
 
@@ -60,6 +66,11 @@ const Title = styled.a`
   &:focus {
     outline: none;
   }
+`;
+
+const Description = styled.div`
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
 `;
 
 interface IResourceContentProps {
@@ -78,9 +89,14 @@ function ResourceContent({ route, version, zebra }: IResourceContentProps) {
       <Sticky className={`bg-${zebra}`}>
         <Flex>
           <FixedBox>
-            <Title href={`#` + toURLLink(route)}>
-              {route.model} / {HANDLER_TITLE_MAP[route.handler]}
-            </Title>
+            <TitleLine>
+              <Title href={`#` + toURLLink(route)}>
+                {route.model} / {HANDLER_TITLE_MAP[route.handler]}
+              </Title>
+              <Description>
+                {HANDLER_TITLE_DESCRIPTION[route.handler]}
+              </Description>
+            </TitleLine>
             <URLBar zebra={zebra} route={route} />
           </FixedBox>
         </Flex>

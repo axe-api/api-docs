@@ -19,6 +19,17 @@ export const HANDLER_TITLE_MAP: Record<string, string> = {
   all: "All",
 };
 
+export const HANDLER_TITLE_DESCRIPTION: Record<string, string> = {
+  store: "You can create a new item on this model",
+  paginate: "You can paginate all items",
+  show: "You can get a specific item by the primary key",
+  update: "You can update an item by the primary key",
+  destroy: "You can delete an item by the primary key",
+  force_delete: "You can force-delete an item by the primary key",
+  patch: "You can patch an item by the primary key",
+  all: "You can list all items without pagination",
+};
+
 export const VALIDATION_DESCRIPTIONS: Record<string, any> = {
   accepted: "The :attribute must be accepted.",
   after: "The :attribute must be after :after.",
