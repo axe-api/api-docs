@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IRoute } from "../../Interfaces";
 import { useState } from "react";
 import CurlRequest from "../CurlRequest";
+import { CopyIcon } from "../Icons";
 
 const Container = styled.div``;
 
@@ -62,6 +63,34 @@ const CodeTitleLink = styled.button`
 const CodeContent = styled.div`
   background-color: #161616;
   padding: 24px 16px;
+  position: relative;
+
+  &:hover {
+    & button {
+      display: flex;
+    }
+  }
+`;
+
+const CopyButton = styled.button`
+  border: 0px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #1c1c1c;
+  border-radius: 24px;
+  padding: 8px 16px;
+  color: white;
+  font-family: "Plus Jakarta Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  display: none;
 `;
 
 interface IRequestExampleProps {
@@ -91,6 +120,10 @@ export default function RequestExample({ route }: IRequestExampleProps) {
         </CodeTab>
         <CodeContent>
           <CurlRequest route={route} />
+          <CopyButton type="button">
+            <CopyIcon height={16} width={16} />
+            <div>Copy</div>
+          </CopyButton>
         </CodeContent>
       </CodeBox>
     </Container>
