@@ -18,8 +18,8 @@ function App() {
   const fetchDocs = async () => {
     const response = await fetch(
       process.env.NODE_ENV === "development"
-        ? "http://localhost:3000/api_docs"
-        : "/api_docs"
+        ? "http://localhost:3000/metadata"
+        : "/metadata"
     );
 
     const result = await response.json();
