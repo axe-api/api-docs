@@ -6,7 +6,12 @@ import {
   CodeTab,
   CodeTitleLink,
 } from "../RequestExample";
-import { getExampleValue } from "../CurlRequest";
+import JSONItem, { JSONCollapse } from "../JSONItem";
+import JSONPaginate from "../JSONPaginate";
+import { CopyButton, getExampleValue } from "../CurlRequest";
+import { CopyIcon } from "../Icons";
+import copy from "copy-to-clipboard";
+import { toast } from "react-toastify";
 
 interface IResponseExampleProps {
   route: IRoute;
@@ -23,51 +28,81 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
-const JSONCollapse = styled.div`
-  color: #00f4b9;
-  font-size: 14px;
-`;
-
-const FieldLine = styled.div`
-  display: flex;
-  gap: 10px;
+const AllArray = styled.div`
   padding-left: 20px;
-  font-size: 14px;
 `;
 
-const Field = styled.div`
-  color: #b4b1ff;
-  font-weight: 400;
-`;
-
-const Value = styled.div`
-  color: #bedbeb;
-  font-weight: 400;
-`;
+const SINGLE_ITEM_HANDLERS = ["store", "show", "update", "patch"];
 
 export default function ResponseExample({ route }: IResponseExampleProps) {
   const possibleColumns = [...route.columns]
     .filter((column) => !route.hiddens.includes(column.name))
     .sort((a: any, b: any) => a.name - b.name);
 
+  const copyItem = () => {
+    let data: any = null;
+    const item: any = {};
+    possibleColumns.forEach((column) => {
+      item[column.name] = getExampleValue(column.data_type);
+    });
+
+    if (SINGLE_ITEM_HANDLERS.includes(route.handler)) {
+      data = item;
+    } else if (route.handler === "all") {
+      data = [item, item];
+    } else if (route.handler === "paginate") {
+      data = {
+        data: [item, item],
+        pagination: {
+          total: 1,
+          lastPage: 1,
+          perPage: 10,
+          currentPage: 1,
+          from: 0,
+          to: 1,
+        },
+      };
+    }
+
+    copy(JSON.stringify(data));
+    toast.success("The response has been copied!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
+  };
+
   return (
-    <Container>
-      <Title>Response Example</Title>
-      <CodeBox>
-        <CodeTab>
-          <CodeTitleLink className="active">JSON</CodeTitleLink>
-        </CodeTab>
-        <CodeContent>
-          <JSONCollapse>{"{"}</JSONCollapse>
-          {possibleColumns.map((column) => (
-            <FieldLine key={column.name}>
-              <Field>"{column.name}":</Field>
-              <Value>{getExampleValue(column.data_type)},</Value>
-            </FieldLine>
-          ))}
-          <JSONCollapse>{"}"}</JSONCollapse>
-        </CodeContent>
-      </CodeBox>
-    </Container>
+    <>
+      <Container>
+        <Title>Response Example</Title>
+        <CodeBox>
+          <CodeTab>
+            <CodeTitleLink className="active">JSON</CodeTitleLink>
+          </CodeTab>
+          <CodeContent>
+            {SINGLE_ITEM_HANDLERS.includes(route.handler) && (
+              <JSONItem columns={possibleColumns} />
+            )}
+            {["all"].includes(route.handler) && (
+              <>
+                <JSONCollapse>{"["}</JSONCollapse>
+                <AllArray>
+                  <JSONItem columns={possibleColumns} addComma={true} />
+                  <JSONItem columns={possibleColumns} />
+                </AllArray>
+                <JSONCollapse>{"]"}</JSONCollapse>
+              </>
+            )}
+            {["paginate"].includes(route.handler) && (
+              <JSONPaginate columns={possibleColumns} />
+            )}
+            <CopyButton type="button" onClick={copyItem}>
+              <CopyIcon height={16} width={16} />
+              <div>Copy</div>
+            </CopyButton>
+          </CodeContent>
+        </CodeBox>
+      </Container>
+    </>
   );
 }

@@ -135,7 +135,7 @@ function ResourceContent({ route, version, zebra }: IResourceContentProps) {
           )}
 
           <RequestExample route={route} />
-          <ResponseExample route={route} />
+          {route.handler !== "destroy" && <ResponseExample route={route} />}
         </FixedBox>
       </Flex>
     </Container>

@@ -92,18 +92,7 @@ export default function RequestExample({ route }: IRequestExampleProps) {
       <Title>Request Example</Title>
       <CodeBox>
         <CodeTab>
-          <CodeTitleLink
-            className="active"
-            //onClick={() => setActiveTab("curl")}
-          >
-            cURL
-          </CodeTitleLink>
-          {/* <CodeTitleLink
-            className={activeTab === "javascript" ? "active" : ""}
-            onClick={() => setActiveTab("javascript")}
-          >
-            JavaScript
-          </CodeTitleLink> */}
+          <CodeTitleLink className="active">cURL</CodeTitleLink>
         </CodeTab>
         <CodeContent>
           <CurlRequest route={route} onCopy={copyContent} />
