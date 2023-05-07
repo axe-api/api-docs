@@ -14,7 +14,6 @@ const Container = styled.div`
 
 function Content() {
   const data = useContext<IDoc>(DocContext);
-  console.log(data.selectedVersion);
   const version = data.versions.find(
     (version) => version.name === data.selectedVersion
   );

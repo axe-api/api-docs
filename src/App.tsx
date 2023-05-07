@@ -1,4 +1,6 @@
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import LeftBar from "./components/LeftBar";
 import Content from "./components/Content";
@@ -65,6 +67,7 @@ function App() {
         <Content />
         {/* <RightBar /> */}
       </DocContext.Provider>
+      <ToastContainer />
     </Provider>
   );
 }

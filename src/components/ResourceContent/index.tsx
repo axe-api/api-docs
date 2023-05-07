@@ -24,7 +24,7 @@ const Flex = styled.div`
 const Sticky = styled.div`
   position: sticky;
   top: 63px;
-  z-index: 999;
+  z-index: 9;
   padding-top: 10px;
   padding-bottom: 0px;
   background-color: #161616;

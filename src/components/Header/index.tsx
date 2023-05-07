@@ -16,7 +16,7 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 19px 24px;
   border-bottom: 1px solid #282828;
-  z-index: 99999;
+  z-index: 99;
 `;
 
 interface IHeaderProps {

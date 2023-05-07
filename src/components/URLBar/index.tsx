@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import copy from "copy-to-clipboard";
+import { toast } from "react-toastify";
 import HTTPMethod from "../HTTPMethod";
 import { CopyIcon } from "../Icons";
 import { IDoc, IRoute } from "../../Interfaces";
@@ -51,6 +53,15 @@ function URLBar({ route, zebra }: IURLBarProps) {
   const data = useContext<IDoc>(DocContext);
   const { origin } = window.location;
 
+  const copyURL = () => {
+    const url = `${origin}${route.url}`;
+    copy(url);
+    toast.success("The URL has been copied!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
+  };
+
   return (
     <Container className={`bg-${zebra}`}>
       <HTTPMethod
@@ -63,7 +74,7 @@ function URLBar({ route, zebra }: IURLBarProps) {
         <Origin>{origin}</Origin>
         <ColoredURL version={data.selectedVersion} url={route.url} />
       </URL>
-      <CopyButton type="button">
+      <CopyButton type="button" onClick={copyURL}>
         <CopyIcon width={24} height={24} />
       </CopyButton>
     </Container>
