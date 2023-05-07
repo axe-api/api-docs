@@ -4,7 +4,9 @@ import CurlRequest from "../CurlRequest";
 import { toast } from "react-toastify";
 import copy from "copy-to-clipboard";
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-bottom: 30px;
+`;
 
 const Title = styled.div`
   font-family: "Plus Jakarta Sans";
@@ -15,19 +17,19 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
-const CodeBox = styled.div`
+export const CodeBox = styled.div`
   border: 1px solid #282828;
   border-radius: 8px;
   overflow: hidden;
 `;
 
-const CodeTab = styled.div`
+export const CodeTab = styled.div`
   height: 48px;
   border-bottom: 1px solid #282828;
   display: flex;
 `;
 
-const CodeTitleLink = styled.button`
+export const CodeTitleLink = styled.button`
   padding: 0px;
   border: none;
   background-color: transparent;
@@ -60,7 +62,7 @@ const CodeTitleLink = styled.button`
   }
 `;
 
-const CodeContent = styled.div`
+export const CodeContent = styled.div`
   background-color: #161616;
   padding: 24px 16px;
   position: relative;

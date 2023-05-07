@@ -6,6 +6,7 @@ import URLBar from "../URLBar";
 import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
 import RequestExample from "../RequestExample";
+import ResponseExample from "../ResponseExample";
 
 const Container = styled.div`
   padding-top: 40px;
@@ -134,6 +135,7 @@ function ResourceContent({ route, version, zebra }: IResourceContentProps) {
           )}
 
           <RequestExample route={route} />
+          <ResponseExample route={route} />
         </FixedBox>
       </Flex>
     </Container>
