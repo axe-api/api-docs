@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { IRoute } from "../../Interfaces";
 import { useState } from "react";
+import CurlRequest from "../CurlRequest";
 
 const Container = styled.div``;
 
@@ -88,7 +89,9 @@ export default function RequestExample({ route }: IRequestExampleProps) {
             JavaScript
           </CodeTitleLink>
         </CodeTab>
-        <CodeContent>Content</CodeContent>
+        <CodeContent>
+          <CurlRequest route={route} />
+        </CodeContent>
       </CodeBox>
     </Container>
   );
