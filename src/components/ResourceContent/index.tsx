@@ -5,6 +5,7 @@ import { HANDLER_TITLE_DESCRIPTION, HANDLER_TITLE_MAP } from "../../Constants";
 import URLBar from "../URLBar";
 import QueryString, { DEFAULT_OPTIONS } from "../GetDocs/QueryString";
 import Params from "../GetDocs/Params";
+import RequestExample from "../RequestExample";
 
 const Container = styled.div`
   padding-top: 40px;
@@ -131,6 +132,8 @@ function ResourceContent({ route, version, zebra }: IResourceContentProps) {
           {["store", "update", "patch"].includes(route.handler) && (
             <RequestBody route={route} />
           )}
+
+          <RequestExample route={route} />
         </FixedBox>
       </Flex>
     </Container>
