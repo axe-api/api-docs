@@ -35,9 +35,9 @@ const AllArray = styled.div`
 const SINGLE_ITEM_HANDLERS = ["store", "show", "update", "patch"];
 
 export default function ResponseExample({ route }: IResponseExampleProps) {
-  const possibleColumns = [...route.columns]
-    .filter((column) => !route.hiddens.includes(column.name))
-    .sort((a: any, b: any) => a.name - b.name);
+  const possibleColumns = [...route.columns].filter(
+    (column) => !route.hiddens.includes(column.name)
+  );
 
   const copyItem = () => {
     let data: any = null;
