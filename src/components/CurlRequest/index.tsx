@@ -65,6 +65,20 @@ export const CopyButton = styled.button`
   display: none;
 `;
 
+export const getExampleValue = (data_type: string): string => {
+  let value: any = `"..."`;
+
+  if (data_type.includes("int ")) {
+    value = 1;
+  } else if (data_type === "datetime") {
+    value = `"2021-10-21 00:00:00"`;
+  } else if (data_type === "date") {
+    value = `"2021-10-21"`;
+  }
+
+  return value;
+};
+
 const getFormBody = (route: IRoute): string => {
   const possibleFields = route.fillables.filter(
     (field) => !route.hiddens.includes(field)
@@ -75,17 +89,7 @@ const getFormBody = (route: IRoute): string => {
   const result: Record<string, any> = {};
 
   columns.forEach((column) => {
-    let value: any = "...";
-
-    if (column.data_type.includes("int ")) {
-      value = 0;
-    } else if (column.data_type === "datetime") {
-      value = "2021-10-21 00:00:00";
-    } else if (column.data_type === "date") {
-      value = "2021-10-21";
-    }
-
-    result[column.name] = value;
+    result[column.name] = getExampleValue(column.data_type);
   });
 
   return JSON.stringify(result);

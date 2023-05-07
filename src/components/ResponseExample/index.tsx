@@ -6,6 +6,7 @@ import {
   CodeTab,
   CodeTitleLink,
 } from "../RequestExample";
+import { getExampleValue } from "../CurlRequest";
 
 interface IResponseExampleProps {
   route: IRoute;
@@ -22,7 +23,33 @@ const Title = styled.div`
   margin-bottom: 24px;
 `;
 
+const JSONCollapse = styled.div`
+  color: #00f4b9;
+  font-size: 14px;
+`;
+
+const FieldLine = styled.div`
+  display: flex;
+  gap: 10px;
+  padding-left: 20px;
+  font-size: 14px;
+`;
+
+const Field = styled.div`
+  color: #b4b1ff;
+  font-weight: 400;
+`;
+
+const Value = styled.div`
+  color: #bedbeb;
+  font-weight: 400;
+`;
+
 export default function ResponseExample({ route }: IResponseExampleProps) {
+  const possibleColumns = [...route.columns]
+    .filter((column) => !route.hiddens.includes(column.name))
+    .sort((a: any, b: any) => a.name - b.name);
+
   return (
     <Container>
       <Title>Response Example</Title>
@@ -30,7 +57,16 @@ export default function ResponseExample({ route }: IResponseExampleProps) {
         <CodeTab>
           <CodeTitleLink className="active">JSON</CodeTitleLink>
         </CodeTab>
-        <CodeContent>{JSON.stringify({ name: "Ozgur" })}</CodeContent>
+        <CodeContent>
+          <JSONCollapse>{"{"}</JSONCollapse>
+          {possibleColumns.map((column) => (
+            <FieldLine key={column.name}>
+              <Field>"{column.name}":</Field>
+              <Value>{getExampleValue(column.data_type)},</Value>
+            </FieldLine>
+          ))}
+          <JSONCollapse>{"}"}</JSONCollapse>
+        </CodeContent>
       </CodeBox>
     </Container>
   );
