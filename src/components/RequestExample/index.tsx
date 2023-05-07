@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { IRoute } from "../../Interfaces";
 import { useState } from "react";
 import CurlRequest from "../CurlRequest";
-import { CopyIcon } from "../Icons";
+import { toast } from "react-toastify";
+import copy from "copy-to-clipboard";
 
 const Container = styled.div``;
 
@@ -72,33 +73,20 @@ const CodeContent = styled.div`
   }
 `;
 
-const CopyButton = styled.button`
-  border: 0px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #1c1c1c;
-  border-radius: 24px;
-  padding: 8px 16px;
-  color: white;
-  font-family: "Plus Jakarta Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  display: none;
-`;
-
 interface IRequestExampleProps {
   route: IRoute;
 }
 
 export default function RequestExample({ route }: IRequestExampleProps) {
   const [activeTab, setActiveTab] = useState("curl");
+
+  const copyContent = (content: string) => {
+    copy(content);
+    toast.success("The code has been copied!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
+  };
 
   return (
     <Container>
@@ -119,11 +107,9 @@ export default function RequestExample({ route }: IRequestExampleProps) {
           </CodeTitleLink>
         </CodeTab>
         <CodeContent>
-          <CurlRequest route={route} />
-          <CopyButton type="button">
-            <CopyIcon height={16} width={16} />
-            <div>Copy</div>
-          </CopyButton>
+          {activeTab === "curl" && (
+            <CurlRequest route={route} onCopy={copyContent} />
+          )}
         </CodeContent>
       </CodeBox>
     </Container>
