@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { IRoute } from "../../Interfaces";
-import { useState } from "react";
 import CurlRequest from "../CurlRequest";
 import { toast } from "react-toastify";
 import copy from "copy-to-clipboard";
@@ -78,8 +77,6 @@ interface IRequestExampleProps {
 }
 
 export default function RequestExample({ route }: IRequestExampleProps) {
-  const [activeTab, setActiveTab] = useState("curl");
-
   const copyContent = (content: string) => {
     copy(content);
     toast.success("The code has been copied!", {
@@ -94,22 +91,20 @@ export default function RequestExample({ route }: IRequestExampleProps) {
       <CodeBox>
         <CodeTab>
           <CodeTitleLink
-            className={activeTab === "curl" ? "active" : ""}
-            onClick={() => setActiveTab("curl")}
+            className="active"
+            //onClick={() => setActiveTab("curl")}
           >
             cURL
           </CodeTitleLink>
-          <CodeTitleLink
+          {/* <CodeTitleLink
             className={activeTab === "javascript" ? "active" : ""}
             onClick={() => setActiveTab("javascript")}
           >
             JavaScript
-          </CodeTitleLink>
+          </CodeTitleLink> */}
         </CodeTab>
         <CodeContent>
-          {activeTab === "curl" && (
-            <CurlRequest route={route} onCopy={copyContent} />
-          )}
+          <CurlRequest route={route} onCopy={copyContent} />
         </CodeContent>
       </CodeBox>
     </Container>
