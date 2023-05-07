@@ -24,16 +24,16 @@ export default function JSONPaginate({ columns }: IJSONPaginateProps) {
       <Level>
         <RowStart>
           <Field>"data":</Field>
-          <Value>{"["}</Value>
+          <JSONCollapse>{"["}</JSONCollapse>
         </RowStart>
         <Level>
           <JSONItem columns={columns} addComma={true} />
           <JSONItem columns={columns} />
         </Level>
-        <Value>{"],"}</Value>
+        <JSONCollapse>{"],"}</JSONCollapse>
         <RowStart>
           <Field>"pagination":</Field>
-          <Value>{"{"}</Value>
+          <JSONCollapse>{"{"}</JSONCollapse>
         </RowStart>
         <Level>
           <RowStart>
@@ -61,7 +61,7 @@ export default function JSONPaginate({ columns }: IJSONPaginateProps) {
             <Value>1</Value>
           </RowStart>
         </Level>
-        <Value>{"}"}</Value>
+        <JSONCollapse>{"}"}</JSONCollapse>
       </Level>
       <JSONCollapse>{"}"}</JSONCollapse>
     </Container>
