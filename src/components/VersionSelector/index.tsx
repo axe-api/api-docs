@@ -3,6 +3,7 @@ import { ArrowDown } from "../Icons";
 import { useContext, useState } from "react";
 import { IDoc, IVersion } from "../../Interfaces";
 import { DocContext } from "../../contexts/DocContext";
+import { toast } from "react-toastify";
 
 const Container = styled.div`
   display: flex;
@@ -87,6 +88,10 @@ function VersionSelector({ setVersion }: IVersionSelectorProps) {
   const handleVersionSelect = (version: IVersion) => {
     setVersion(version);
     setActive(false);
+    toast.success("API version has been changed!", {
+      position: "bottom-right",
+      theme: "dark",
+    });
   };
 
   return (
