@@ -14,6 +14,7 @@ const Container = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: rgba(255, 255, 255, 0.9);
+  overflow-x: scroll;
 `;
 
 const CurlLine = styled.div`
