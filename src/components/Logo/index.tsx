@@ -14,7 +14,7 @@ const Container = styled.a`
 `;
 
 function Logo() {
-  return <Container href="/">Axe API Docs</Container>;
+  return <Container href="/docs">Axe API Docs</Container>;
 }
 
 export default Logo;
